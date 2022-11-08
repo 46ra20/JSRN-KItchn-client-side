@@ -1,9 +1,10 @@
 import React from 'react';
-import MenuBar from '../MenuBar/MenuBar';
+import Slider from './Slider';
 
 const Home = () => {
     return (
         <div>
+            <Slider></Slider>
         </div>
     );
 };
