@@ -4,7 +4,7 @@ import React from 'react';
 const Slider = () => {
     return (
         <div className='my-3'>
-            <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
+            <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 container mx-auto">
                 <Carousel>
                     <img
                         src="https://flowbite.com/docs/images/carousel/carousel-1.svg"

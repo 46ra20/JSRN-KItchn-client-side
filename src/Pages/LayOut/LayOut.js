@@ -5,7 +5,7 @@ import MenuBar from '../MenuBar/MenuBar';
 
 const LayOut = () => {
     return (
-        <div className='max-w-6xl mx-auto'>
+        <div>
             <MenuBar></MenuBar>
             <Outlet></Outlet>
             <PageFooter></PageFooter>
