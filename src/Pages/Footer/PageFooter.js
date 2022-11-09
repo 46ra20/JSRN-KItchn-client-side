@@ -17,10 +17,10 @@ const PageFooter = () => {
                         <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
                         <ul className="text-gray-600 dark:text-gray-400">
                             <li className="mb-4">
-                                <Link href="https://flowbite.com/" className="hover:underline">Flowbite</Link>
+                                <Link href="https://flowbite.com/" className="hover:underline">JSRN Team</Link>
                             </li>
                             <li>
-                                <Link href="https://tailwindcss.com/" className="hover:underline">Tailwind CSS</Link>
+                                <Link href="https://tailwindcss.com/" className="hover:underline">JSRN Foundation</Link>
                             </li>
                         </ul>
                     </div>
@@ -28,10 +28,10 @@ const PageFooter = () => {
                         <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
                         <ul className="text-gray-600 dark:text-gray-400">
                             <li className="mb-4">
-                                <Link href="https://github.com/themesberg/flowbite" className="hover:underline ">Github</Link>
+                                <Link href="https://github.com/themesberg/flowbite" className="hover:underline ">Facebook</Link>
                             </li>
                             <li>
-                                <Link href="https://discord.gg/4eeurUVvTy" className="hover:underline">Discord</Link>
+                                <Link href="https://discord.gg/4eeurUVvTy" className="hover:underline">Instagram</Link>
                             </li>
                         </ul>
                     </div>
