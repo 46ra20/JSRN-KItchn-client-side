@@ -40,6 +40,11 @@ const UserContext = ({children}) => {
         return unsubscribe();
     },[])
 
+    //set page title
+    const pageTitle = (title) =>{
+        document.title= title;
+    }
+
 
     return (
         <AuthProvider.Provider value={{
@@ -47,7 +52,8 @@ const UserContext = ({children}) => {
             logInWithEmailAndPass,
             singUp,
             logOut,
-            userData
+            userData,
+            pageTitle
         }}>
             {
                 children
