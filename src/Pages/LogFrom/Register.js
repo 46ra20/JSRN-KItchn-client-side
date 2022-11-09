@@ -37,7 +37,10 @@ const Register = () => {
         if(confirmPassword){
             //create user with email and password
             singUp(email, password)
-                .then(result => console.log(result.user))
+                .then(result => {
+                    console.log(result.user)
+                    from.reset();
+                })
                 .catch(err => console.log(err))
         }
     }
