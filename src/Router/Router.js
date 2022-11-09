@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import PageFooter from '../Pages/Footer/PageFooter';
 import Home from '../Pages/Home/Home';
 import LayOut from '../Pages/LayOut/LayOut';
+import ServiceDetails from '../Pages/Services/ServiceDetails';
 import Services from '../Pages/Services/Services';
 
 export const router = createBrowserRouter([
@@ -22,6 +23,11 @@ export const router = createBrowserRouter([
                 path:'/services',
                 loader: async () => fetch('http://localhost:5000/services'),
                 element:<Services></Services>
+            },
+            {
+                path:'/service/details/:serviceId',
+                loader: async ({ params }) => fetch(`http://localhost:5000/details/${params.serviceId}`),
+                element:<ServiceDetails></ServiceDetails>
             }
         ]
     },
