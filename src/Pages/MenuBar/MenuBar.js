@@ -19,7 +19,7 @@ const MenuBar = () => {
                             alt="Flowbite Logo"
                         />
                         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-                            Flowbite
+                            JSRN Kitchen
                         </span>
                     </Navbar.Brand>
                     <Navbar.Toggle />
