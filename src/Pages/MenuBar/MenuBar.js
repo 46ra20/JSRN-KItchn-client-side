@@ -6,7 +6,7 @@ import logo from '../../Assist/JSRN Kitchen-edit.png'
 
 const MenuBar = () => {
     return (
-        <div className='shadow'>
+        <div className='shadow bg-white'>
             <div className='container mx-auto'>
                 <Navbar
                     fluid={true}
