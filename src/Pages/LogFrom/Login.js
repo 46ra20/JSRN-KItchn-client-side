@@ -3,20 +3,31 @@ import { Link } from 'react-router-dom';
 import { AuthProvider } from '../../UserContext/UserContext';
 
 const Login = () => {
-    const { logInWithGoogle } = useContext(AuthProvider);
-    //login with google 
-    const handleGoogleLogin = () =>{
-        logInWithGoogle()
-        .then(result => console.log(result.user))
-        .catch(err => console.log(err))
-    }
+    const { logInWithGoogle, logInWithEmailAndPass } = useContext(AuthProvider);
     const handleLogin = (event)=>{
         event.preventDefault();
         const from = event.target;
         const email = from.email.value;
         const password = from.password.value;
-        console.log(email, password);
+
+        loginWithEmailAndPassword(email, password);
+
     }
+
+    //login with google 
+    const handleGoogleLogin = () => {
+        logInWithGoogle()
+            .then(result => console.log(result.user))
+            .catch(err => console.log(err))
+    }
+
+    //login with email and password
+    const loginWithEmailAndPassword =(email, password) =>{
+        logInWithEmailAndPass(email, password)
+        .then(result => console.log(result.user))
+        .catch(err => console.log(err.code))
+    }
+
     return (
         <div className='sm:w-full md:w-2/4 lg:w-1/4 my-5 sm:mx-3 md:mx-auto p-4 border rounded bg-white shadow'>
 

@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthProvider } from '../../UserContext/UserContext';
 
 const Register = () => {
     const [accept, setAccept] = useState(true);
     const [confirmPassword, setConfirmPassword] = useState(true)
     const [userPassword, setUserPassword] = useState('')
+    //create user with email and password
+    const {singUp} = useContext(AuthProvider);
+
 
     //matching password
     const matchPassword = (e) =>{
@@ -29,9 +33,13 @@ const Register = () => {
         const from = event.target;
         const name = from.userName.value
         const email = from.email.value;
-        const password = from.password.value;
-        setUserPassword(password);
-
+        const password = from.confirm_password.value;
+        if(confirmPassword){
+            //create user with email and password
+            singUp(email, password)
+                .then(result => console.log(result.user))
+                .catch(err => console.log(err))
+        }
     }
 
     return (
