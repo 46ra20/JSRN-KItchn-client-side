@@ -7,7 +7,6 @@ const Services = () => {
     //collect data from server
     const services = useLoaderData();
     const [photo, setPhoto] = useState([])
-    console.log(photo)
     return (
         <PhotoProvider>
             <PhotoView src={photo}>
