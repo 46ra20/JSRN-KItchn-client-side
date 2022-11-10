@@ -78,7 +78,7 @@ const ServiceDetails = () => {
                     </div>)
                 }
                 {
-                    userData|| <p>Please Login for review..<Link to={'/login'}>Login</Link></p>
+                    userData?.uid?'':<p className='text-red-600 '>Please Login for review..<Link to={'/login'} className='text-blue-600'>Login</Link></p>
                 }
 
                 <form onSubmit={handleReview} className='mt-5'>
