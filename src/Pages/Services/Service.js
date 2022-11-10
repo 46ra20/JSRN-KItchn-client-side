@@ -1,18 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthProvider } from '../../UserContext/UserContext';
 
-const Service = ({service, setPhoto}) => {
+const Service = ({service}) => {
     const {img, name, ratting, price, description, _id} = service;
-
+    const {setImageURL} = useContext(AuthProvider)
     //react photo viewer
-    const handleViewer = img =>{
-        setPhoto(img)
-    }
+
 
     return (
         <div>
             <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-auto my-2">
-                <img className="rounded-t-lg h-56 w-full" src={img} style={{ objectFit: 'cover' }} alt="" onClick={()=>handleViewer(img)}/>
+                <img className="rounded-t-lg h-56 w-full" src={img} onClick={()=>{setImageURL(img)}} alt=""/>
                 <div className="p-5">
                     <Link href="#">
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{name}</h5>

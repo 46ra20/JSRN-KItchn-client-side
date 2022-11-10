@@ -7,9 +7,9 @@ const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState(true)
     const [userPassword, setUserPassword] = useState('')
     //create user with email and password
-    const {singUp} = useContext(AuthProvider);
+    const {singUp, pageTitle} = useContext(AuthProvider);
 
-
+    pageTitle('Sing up')
     //matching password
     const matchPassword = (e) =>{
         const pass = e.target.value;

@@ -8,7 +8,8 @@ export const AuthProvider = createContext();
 const auth = getAuth(app);
 
 const UserContext = ({children}) => {
-    const [userData, setUserData] = useState()
+    const [userData, setUserData] = useState();
+    const [imageURL, setImageURL] = useState('');
 
     //provider
     const googleProvider = new GoogleAuthProvider();
@@ -53,7 +54,9 @@ const UserContext = ({children}) => {
             singUp,
             logOut,
             userData,
-            pageTitle
+            pageTitle,
+            setImageURL,
+            imageURL
         }}>
             {
                 children

@@ -6,9 +6,12 @@ import { FaRegUserCircle } from 'react-icons/fa'
 const ServiceDetails = () => {
     const serviceDetails = useLoaderData();
     const { img, name, price, ratting, description,_id } = serviceDetails;
-    const {userData} = useContext(AuthProvider);
+    const {userData, pageTitle} = useContext(AuthProvider);
     const navigate = useNavigate();
     
+    //page title
+    pageTitle('Service Details')
+
     //state
     const [refresh, setRefresh] = useState(false);
     const [review, setReview] = useState([]);
@@ -29,7 +32,6 @@ const ServiceDetails = () => {
             .then(res => res.json())
             .then(data => {
                 setRefresh(!refresh)
-                console.log(data)
                 event.target.reset();
             })
         }

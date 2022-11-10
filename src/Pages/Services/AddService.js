@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import { AuthProvider } from '../../UserContext/UserContext';
 
 const AddService = () => {
+    const {pageTitle} = useContext(AuthProvider)
+    pageTitle('Add Service')
     const handleSubmit =(event)=>{
         event.preventDefault();
         const from = event.target;
@@ -22,7 +26,12 @@ const AddService = () => {
         .then(res=>res.json())
         .then(data=> {
             from.reset()
-            console.log(data)
+            if (data.acknowledged) {
+                toast.success('Food item add on services....')
+            }
+            else{
+                toast.error('Sorry Item not added.....')
+            }
         })
     }
     return (
@@ -51,6 +60,7 @@ const AddService = () => {
                 </div>
                 <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Service</button>
             </form>
+            <Toaster/>
         </div>
     );
 };

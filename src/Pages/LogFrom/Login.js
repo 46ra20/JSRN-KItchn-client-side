@@ -3,9 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthProvider } from '../../UserContext/UserContext';
 
 const Login = () => {
-    const { logInWithGoogle, logInWithEmailAndPass } = useContext(AuthProvider);
+    const { logInWithGoogle, logInWithEmailAndPass,pageTitle } = useContext(AuthProvider);
     const navigate = useNavigate()
 
+    pageTitle('Login')
     const handleLogin = (event)=>{
         event.preventDefault();
         const from = event.target;

@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthProvider } from '../../UserContext/UserContext';
 import MyTeam from './MyTeam';
 import OurServices from './OurServices';
 import Slider from './Slider';
 import SomeOtherInformation from './SomeOtherInformation';
 
 const Home = () => {
+    const {pageTitle}= useContext(AuthProvider)
+    pageTitle('Home')
     return (
         <div className=' container mx-auto'>
             <Slider></Slider>
             <OurServices></OurServices>
-            <SomeOtherInformation></SomeOtherInformation>
             <MyTeam></MyTeam>
+            <SomeOtherInformation></SomeOtherInformation>
         </div>
     );
 };
