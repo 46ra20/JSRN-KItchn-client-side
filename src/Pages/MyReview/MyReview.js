@@ -15,14 +15,14 @@ const MyReview = () => {
     const [myReview, setMyReview] = useState([])
     const [refresh, setRefresh] = useState(false);
     useEffect(() => {
-        fetch(`http://localhost:5000/review/?uid=${userData?.uid}`)
+        fetch(`https://assignment-11-server-46ra20.vercel.app/review/?uid=${userData?.uid}`)
             .then(res => res.json())
             .then(data => setMyReview(data))
     }, [userData?.uid, refresh])
 
     //handle delete
     const handleDelete = id => {
-        fetch(`http://localhost:5000/delete-review/${id}`, {
+        fetch(`https://assignment-11-server-46ra20.vercel.app/delete-review/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

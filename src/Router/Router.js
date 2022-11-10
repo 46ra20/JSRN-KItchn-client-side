@@ -1,7 +1,6 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Blog from '../Pages/Blog/Blog';
-import PageFooter from '../Pages/Footer/PageFooter';
 import Home from '../Pages/Home/Home';
 import LayOut from '../Pages/LayOut/LayOut';
 import Login from '../Pages/LogFrom/Login';
@@ -27,12 +26,12 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/services',
-                loader: async () => fetch('http://localhost:5000/services'),
+                loader: async () => fetch('https://assignment-11-server-46ra20.vercel.app/services'),
                 element:<Services></Services>
             },
             {
                 path:'/service/details/:serviceId',
-                loader: async ({ params }) => fetch(`http://localhost:5000/details/${params.serviceId}`),
+                loader: async ({ params }) => fetch(`https://assignment-11-server-46ra20.vercel.app/details/${params.serviceId}`),
                 element:<ServiceDetails></ServiceDetails>
             },
             {
@@ -54,7 +53,8 @@ export const router = createBrowserRouter([
             {
                 path:'/blog',
                 element:<Blog></Blog>
-            }
+            },
+
         ]
     }
 ])

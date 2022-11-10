@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthProvider } from '../../UserContext/UserContext';
 import { FaRegUserCircle } from 'react-icons/fa'
 
@@ -22,7 +22,7 @@ const ServiceDetails = () => {
         const customerReview = event.target.customer_review.value;
         if(userData?.uid){
             const serviceReview = { "serviceId":_id,"serviceName":name,"review": customerReview, "userUid": userData?.uid, "userName": userData?.displayName, "userPhoto": userData?.photoURL}
-            fetch('http://localhost:5000/review',{
+            fetch('https://assignment-11-server-46ra20.vercel.app/review',{
                 method:'POST',
                 headers:{
                     'content-type' :'application/json'
@@ -42,7 +42,7 @@ const ServiceDetails = () => {
 
     //get review
     useEffect(()=>{
-        fetch(`http://localhost:5000/review/${_id}`)
+        fetch(`https://assignment-11-server-46ra20.vercel.app/review/${_id}`)
         .then(res=> res.json())
         .then(data=> setReview(data))
     },[refresh,_id])
@@ -76,6 +76,9 @@ const ServiceDetails = () => {
                         </div>
                         <h2 className='ml-5 px-3 py-1 bg-gray-100 rounded-3xl inline-block'>{r.review}</h2>
                     </div>)
+                }
+                {
+                    userData|| <p>Please Login for review..<Link to={'/login'}>Login</Link></p>
                 }
 
                 <form onSubmit={handleReview} className='mt-5'>
