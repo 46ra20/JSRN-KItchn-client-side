@@ -1,13 +1,18 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthProvider } from '../../UserContext/UserContext';
 
 const Register = () => {
     const [accept, setAccept] = useState(true);
     const [confirmPassword, setConfirmPassword] = useState(true)
     const [userPassword, setUserPassword] = useState('')
+    const [error, setError] = useState('');
     //create user with email and password
     const {singUp, pageTitle} = useContext(AuthProvider);
+    const navigate = useNavigate();
+    const location = useLocation()
+    const redirect = location.state?.from || '/';
+
 
     pageTitle('Sing up')
     //matching password
@@ -30,6 +35,7 @@ const Register = () => {
 
     const handleSubmit = (event) =>{
         event.preventDefault();
+        setError('')
         const from = event.target;
         const name = from.userName.value
         const email = from.email.value;
@@ -37,11 +43,20 @@ const Register = () => {
         if(confirmPassword){
             //create user with email and password
             singUp(email, password)
-                .then(result => {
-                    console.log(result.user)
+                .then(() => {
+                    navigate(redirect,{replace:true});
                     from.reset();
+                    
                 })
-                .catch(err => console.log(err))
+                .catch(err => {
+                    console.log(err)
+                    if(err.code==="auth/email-already-in-use"){
+                        setError("Sorry, This email already used try with another")
+                    }
+                    if(err.code==="auth/invalid-email"){
+                        setError("Please provide a valid email address")
+                    }
+                })
         }
     }
 
@@ -67,13 +82,16 @@ const Register = () => {
                     <input type="password" name='confirm_password' onBlur={matchPassword} id="confirm_password" className={`${confirmPassword? "bg-gray-50 border border-gray-300 text-gray-900":"bg-red-50 border-red-300 text-red-900"} text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`} placeholder="•••••••••" required="" />
                     {confirmPassword||<p className='text-red-300'>Password does't match....</p>}
                 </div>
+                {
+                    error && <p className='text-red-400'>{error}</p>
+                }
                 <div className="flex items-start mb-6">
                     <div className="flex items-center h-5">
                         <input id="remember" type="checkbox" value="" className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required="" onClick={()=> setAccept(!accept)}/>
                     </div>
                     <label htmlFor="remember" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-400">I agree with the <Link className="text-blue-600 hover:underline dark:text-blue-500" >terms and conditions</Link>.</label>
                 </div>
-                <button type="submit" className="block mx-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" disabled={accept}>Sing Up</button>
+                <button type="submit" className="block mx-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" disabled={!accept}>Sing Up</button>
                 <p className='mt-5'>Have an account? Please <Link to={'/login'} className='text-blue-500'>Log In</Link></p>
             </form>
         </div>

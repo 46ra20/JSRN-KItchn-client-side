@@ -9,23 +9,26 @@ const auth = getAuth(app);
 
 const UserContext = ({children}) => {
     const [userData, setUserData] = useState();
-    const [imageURL, setImageURL] = useState('');
-    const [viewImage, setViewImage] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [pageLoading,setPageLoading] = useState(true);
 
     //provider
     const googleProvider = new GoogleAuthProvider();
     //login with popup
     const logInWithGoogle = () =>{
+        setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
 
     //login with email and password
     const logInWithEmailAndPass = (email, password)=>{
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password);
     }
 
     //sing up with email and password
     const singUp = (email, password)=>{
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email,password)
     }
 
@@ -38,6 +41,7 @@ const UserContext = ({children}) => {
     useEffect(()=>{
         const unsubscribe = () => onAuthStateChanged(auth, currentUser=>{
             setUserData(currentUser)
+            setLoading(false)
         })
         return unsubscribe();
     },[])
@@ -56,10 +60,9 @@ const UserContext = ({children}) => {
             logOut,
             userData,
             pageTitle,
-            setImageURL,
-            imageURL,
-            setViewImage,
-            viewImage
+            loading,
+            pageLoading,
+            setPageLoading
         }}>
             {
                 children

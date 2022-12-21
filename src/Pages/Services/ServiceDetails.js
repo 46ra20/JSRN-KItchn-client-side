@@ -49,7 +49,7 @@ const ServiceDetails = () => {
     return (
         <div className='my-4'>
             <div className='sm:w-full md:w-2/4 mx-auto border rounded p-5 bg-white'>
-                <img src={img} alt='' className='shadow-lg rounded'></img>
+                <img src={img} alt='' className='shadow-lg rounded w-full'></img>
                 <div>
                     <h2 className='text-center text-3xl my-2'><span className='font-semibold'>Product Name:- </span> {name}</h2>
                     <p className='text-center'><span className='font-semibold'>Description:-</span> {description}</p>
@@ -72,7 +72,7 @@ const ServiceDetails = () => {
                                 :
                                     <FaRegUserCircle className='w-6 h-6 rounded-full'></FaRegUserCircle>
                             }
-                            <h2 className='text-blue-700 ml-2'>{r.userName|| <span>user name not found</span>}</h2>
+                            <h2 className='text-blue-700 ml-2'>{userData?.displayName|| <span>Anonymous</span>}</h2>
                         </div>
                         <h2 className='ml-5 px-3 py-1 bg-gray-100 rounded-3xl inline-block'>{r.review}</h2>
                     </div>)

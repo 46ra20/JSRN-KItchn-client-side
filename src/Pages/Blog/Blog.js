@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { AuthProvider } from '../../UserContext/UserContext';
+import Loading from '../../Components/Loading/Loading';
 
 const Blog = () => {
-    const {pageTitle} = useContext(AuthProvider)
+    const {pageTitle, pageLoading} = useContext(AuthProvider)
     pageTitle('Blog')
     const questions = [
         { "id": "01", "question": "Difference between SQL and NoSQL?", "answer": "SQL is a structured data base system but NoSQL is not a structured. You can save as your wish in NoSQL data system but not in SQL data base" },
@@ -14,7 +15,11 @@ const Blog = () => {
     ]
             
     return (
-        <div className='sm:w-full md:w-3/4 lg:w-2/4 mx-auto'>
+        <>
+            <div className={`${pageLoading?'':'hidden'}`}>
+                <Loading/>
+            </div>
+            <div className={`sm:w-full md:w-3/4 lg:w-2/4 mx-auto ${pageLoading?'hidden':''}`}>
 
             {
                 questions.map(que =>
@@ -26,6 +31,7 @@ const Blog = () => {
             }
 
         </div>
+        </>
     );
 };
 

@@ -1,42 +1,61 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { AuthProvider } from '../../UserContext/UserContext';
+import React from "react";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import { Link } from "react-router-dom";
 
-const Service = ({service}) => {
-    const {img, name, ratting, price, description, _id} = service;
-    const { setImageURL, setViewImage, viewImage } = useContext(AuthProvider)
-    //react photo viewer
+const Service = ({ service }) => {
+  const { img, name, ratting, price, description, _id } = service;
+  //react photo viewer
 
+  return (
+    <div>
+      <div className="bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-3 md:mx-auto my-2 md:my-auto h-full">
+        <PhotoProvider>
+          <PhotoView src={img}>
+            {/* <img src={imageURL} alt="" /> */}
+            {/* <img src={imageURL} style={{ objectFit: 'cover' }} alt="" /> */}
+            <img className="rounded-t-lg h-56 w-full" src={img} alt="" />
+          </PhotoView>
+        </PhotoProvider>
+        <div className="p-5">
+          <Link href="#">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              {name}
+            </h5>
+          </Link>
+          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+            {description.slice(0, 100)}...
+            <Link to={`/service/details/${_id}`}>Read More</Link>
+          </p>
 
-    return (
-        <div>
-            <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-auto my-2">
-                <img className="rounded-t-lg h-56 w-full" src={img} onClick={()=>{
-                    setImageURL(img)
-                    setViewImage(!viewImage)
-                }} alt=""/>
-                <div className="p-5">
-                    <Link href="#">
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{name}</h5>
-                    </Link>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{
-                        description.slice(0,100)
-                    }...<Link to={`/service/details/${_id}`}>Read More</Link></p>
+          {/* Ratting and Price */}
+          <div className="flex justify-between my-2 font-medium text-gray-600">
+            <p>Price: {price}$</p>
+            <p>Ratting: {ratting} stars</p>
+          </div>
 
-                    {/* Ratting and Price */}
-                    <div className='flex justify-between my-2 font-medium text-gray-600'>
-                        <p>Price: {price}$</p>
-                        <p>Ratting: {ratting} stars</p>
-                    </div>
-
-                    <Link to={`/service/details/${_id}`} className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        View Details
-                        <svg aria-hidden="true" className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
-                    </Link>
-                </div>
-            </div>
+          <Link
+            to={`/service/details/${_id}`}
+            className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            View Details
+            <svg
+              aria-hidden="true"
+              className="ml-2 -mr-1 w-4 h-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              ></path>
+            </svg>
+          </Link>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Service;

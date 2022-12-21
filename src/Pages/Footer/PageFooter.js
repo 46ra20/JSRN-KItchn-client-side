@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../Assist/JSRN Kitchen-edit.png'
+import { AuthProvider } from '../../UserContext/UserContext';
 
 const PageFooter = () => {
+    const {setPageLoading} = useContext(AuthProvider);
+    setPageLoading(false);
     return (
         <div className="p-4 bg-white sm:p-6 dark:bg-gray-900 shadow border-t">
             <div className="md:flex md:justify-between container mx-auto">
